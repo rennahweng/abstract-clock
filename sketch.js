@@ -7,18 +7,28 @@ let noiseHeight = 20;
 // in order to print minutes() to console
 var prev_m = -1;
 
+// variables for making flowers for minute
+var flower_colors = ['rgba(204,97,71,1)', 'rgba(240,159,39,1)', '#CC724C'];
+var min_xs=[], min_ys=[], min_angles=[];
+
 
 function setup() {
 	// set frame as the whole webpage based on user's screen size
     createCanvas(windowWidth,windowHeight);
+    // noCursor();
 
-    // for gradient background
+    // For gradient background
     noiseY = height * 3 / 4;
-    
-    // updates every second
+
+    // Populate arrays for flower coordinates
+    for (var i = 0; i < 60; i++) {
+    	min_xs[i] = random(width * 3.3 / 9, width * 5.8 / 9);
+    	min_ys[i] = random(height*1.5 / 7, height * 5.3 / 7);
+    	min_angles[i] = random(360);
+    }
+
+    // Updates every second
     frameRate(1);
-
-
 }
 
 
@@ -56,18 +66,18 @@ function draw() {
 // for background decorations
 function background_gradient() {
 	for (let j = 0; j < 3; j++) {
-      let offsetY = j * 100;
-      noFill();
-      stroke(0, 0, 255, 10);
-      strokeWeight(height / 2);
-      beginShape();
-      curveVertex(0, height / 2);
-      for (let i = 0; i < width; i += 50) {
-        let y = noise(frameCount * noiseSpeed + i + j) * noiseHeight + noiseY + offsetY;
-        curveVertex(i, y);
-      }
-      curveVertex(width, height / 2);
-      endShape(CLOSE);
+		let offsetY = j * 100;
+		noFill();
+		stroke(0, 0, 255, 10);
+		strokeWeight(height / 2);
+		beginShape();
+		curveVertex(0, height / 2);
+		for (let i = 0; i < width; i += 50) {
+			let y = noise(frameCount * noiseSpeed + i + j) * noiseHeight + noiseY + offsetY;
+			curveVertex(i, y);
+		}
+		curveVertex(width, height / 2);
+		endShape(CLOSE);
     }
 }
 
@@ -161,8 +171,35 @@ function flowerMinute(m) {
 	// Compare current minute with the previous to avoid
 	// printing out the same value
 	if (m != prev_m) {
-      console.log(m);
+    	console.log(m);
     }
  	// update current value for minute();
     prev_m = m;
+
+    // Draw flowers based on the current minute value
+    for (var i = 0; i < m; i++) {
+    	drawFlower(min_xs[i], min_ys[i], min_angles[i], 4, i % flower_colors.length);
+    }
+}
+
+// Make flower shapes for flowerMinute function:
+function drawFlower(x, y, angle, petals, color) {
+    push();
+    // flowers of different colors
+    fill(flower_colors[color]);
+    translate(x, y);
+
+    // petals rotate around to make a complete flower
+    rotate(angle);
+    for (var i = 0; i < petals; i++) {
+    	push();
+    	rotate(360 * i / petals);
+    	ellipse(0, 13, 26 * pow(0.92, petals), 26);
+    	pop();
+    }
+
+    // Make a small circle as the flower core:
+    fill('#E9D558'); // yellow
+    ellipse(0,0,10,10);
+    pop();
 }
