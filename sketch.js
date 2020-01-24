@@ -3,6 +3,11 @@ let noiseY;
 let noiseSpeed = 0.01;
 let noiseHeight = 20;
 
+// keeps track of the values for minute()
+// in order to print minutes() to console
+var prev_m = -1;
+
+
 function setup() {
 	// set frame as the whole webpage based on user's screen size
     createCanvas(windowWidth,windowHeight);
@@ -10,7 +15,10 @@ function setup() {
     // for gradient background
     noiseY = height * 3 / 4;
     
+    // updates every second
     frameRate(1);
+
+
 }
 
 
@@ -37,6 +45,9 @@ function draw() {
     // Make trees around the Earth to represent the hour
     treeHour(s, h);
 
+    // Make flowers inside the Earth to represent the minute
+    // And print out minute() to console
+    flowerMinute(m);
 }
 
 
@@ -142,4 +153,16 @@ function treeHour(s, h) {
         ellipse(7, -315, 50, 50);
     }
     pop();
+}
+
+// Minutes:
+function flowerMinute(m) {
+	// Task: print minute() to console everytime it changes.
+	// Compare current minute with the previous to avoid
+	// printing out the same value
+	if (m != prev_m) {
+      console.log(m);
+    }
+ 	// update current value for minute();
+    prev_m = m;
 }
