@@ -34,6 +34,9 @@ function draw() {
     // Make circles of decreasing radius to represent second
     circleSecond(s);
 
+    // Make trees around the Earth to represent the hour
+    treeHour(s, h);
+
 }
 
 
@@ -117,4 +120,26 @@ function circleSecond(s) {
         ellipse(width/2, height/2.2 + i*4, i*2, i*2);
       }
     }
+}
+
+// Hours:
+function treeHour(s, h) {
+    push();
+    translate(width/2, height/2);
+    // Make all trees rotating around Earth every single second
+    var angle = 360 * s / 60;
+    rotate( radians(angle - 90) );
+
+    // Update the number of trees based on second:
+    for (i = 0; i < h; i++) {
+    	// a max of 24 can trees revolve around the Earth
+        rotate( radians(15) ); // 360/24=15
+        noStroke();
+        // tree consists of a rectangle and a circle
+        fill(181,107,42);
+        rect(0, -315, 15, 70)
+        fill(59,122,87);
+        ellipse(7, -315, 50, 50);
+    }
+    pop();
 }
