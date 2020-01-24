@@ -19,7 +19,11 @@ function draw() {
 	background(255, 250, 195);
 	// add gradient design to the whole background
     background_gradient();
+
+    // Create a simple Earth at the center of the page
+    earth();
 }
+
 
 function background_gradient() {
 	for (let j = 0; j < 3; j++) {
@@ -36,4 +40,15 @@ function background_gradient() {
       curveVertex(width, height / 2);
       endShape(CLOSE);
     }
+}
+
+function earth() {
+    push();
+    // set origin at center of the screen
+    translate(width/2, height/2);
+    noStroke(); // no outline
+    fill(15, 4, 101); // dark blue
+    // make a circle of radius 265 at origin 
+    ellipse(0, 0, 530, 530); // width is 2*radius, or 530
+    pop();
 }
