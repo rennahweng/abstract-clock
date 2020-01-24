@@ -22,6 +22,9 @@ function draw() {
 
     // Create a simple Earth at the center of the page
     earth();
+
+    // Add blinking stars to background
+    stars();
 }
 
 
@@ -51,4 +54,17 @@ function earth() {
     // make a circle of radius 265 at origin 
     ellipse(0, 0, 530, 530); // width is 2*radius, or 530
     pop();
+}
+
+function stars() {
+	var galaxy = { 
+	locationX : random(width),
+	locationY : random(height),
+	size : random(1,15)
+	}
+	fill(255,255,255); // white
+	noStroke();
+	// a stream of stars following after mouse cursor
+	ellipse(mouseX ,mouseY, galaxy.size,galaxy.size);
+	ellipse(galaxy.locationX ,galaxy.locationY, galaxy.size, galaxy.size);
 }
