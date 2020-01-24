@@ -32,11 +32,15 @@ function setup() {
 }
 
 
+
 function draw() {
 	// yellow and green-ish background color
 	background(255, 250, 195);
 	// add gradient design to the whole background
     background_gradient();
+
+    // add a title for my clock
+    title();
 
     // Create a simple Earth at the center of the page
     earth();
@@ -61,6 +65,7 @@ function draw() {
 }
 
 
+
 // Helper Functions:
 
 // for background decorations
@@ -79,6 +84,15 @@ function background_gradient() {
 		curveVertex(width, height / 2);
 		endShape(CLOSE);
     }
+}
+
+function title() {
+	fill(78,115,140);
+    textSize(60);
+    text('Make', width/15, height/3);
+    text('Earth', width/15, height/2);
+    text('Green', width*16.5/20, height/3);
+    text('Again!', width*16.5/20, height/2);
 }
 
 function earth() {
