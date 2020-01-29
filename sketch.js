@@ -146,15 +146,15 @@ function circleSecond(s) {
     
     // Make a water drop at the center of the earth when second restarts at 0.
     // This shows how we are currently collecting water circles to fill up the Earth!
-    for(var j = 0; j < s; j++) {
-      for (var i = 2; i < 10; i++ ) {
-        noStroke();
-        fill(124, 185, 232); // light blue
-        // make multiple ellipses of different widths
-        // and combine them to form a water-drop shape:
-        ellipse(width/2, height/2.2 + i*4, i*2, i*2);
-      }
-    }
+    //for(var j = 0; j < s; j++) {
+    //  for (var i = 2; i < 10; i++ ) {
+    //    noStroke();
+    //    fill(124, 185, 232); // light blue
+    //    // make multiple ellipses of different widths
+    //    // and combine them to form a water-drop shape:
+    //    ellipse(width/2, height/2.2 + i*4, i*2, i*2);
+    //  }
+    //}
 }
 
 // Hours:
