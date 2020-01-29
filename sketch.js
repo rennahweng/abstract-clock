@@ -28,7 +28,7 @@ function setup() {
     }
 
     // Updates every second
-    frameRate(1);
+    frameRate(10);
 }
 
 
